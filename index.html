@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Happy 6 Months 💜</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Nunito:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#2a1745;--soft:#5b4678;--lav1:#f3e9ff;--lav2:#d9c2f5;--lav3:#9b6fd6;--deep:#4b2a82;--glow:#b28cf0}
+@media (prefers-color-scheme:dark){:root{--ink:#f3e9ff;--soft:#d2c0ee;}}
+*{box-sizing:border-box;margin:0}
+html,body{height:100%}
+body{font-family:'Nunito',system-ui,sans-serif;color:var(--ink);overflow-x:hidden;
+ background:linear-gradient(160deg,#ead9ff 0%,#c9a9ee 45%,#8b63c9 100%);background-attachment:fixed}
+h1,h2,h3{font-family:'Cormorant Garamond',Georgia,serif;font-weight:600;line-height:1.15}
+#stars,#petals{position:fixed;inset:0;pointer-events:none;z-index:0}
+.star{position:absolute;width:3px;height:3px;border-radius:50%;background:#fff;box-shadow:0 0 8px 2px #fff;animation:tw 3s infinite ease-in-out}
+@keyframes tw{50%{opacity:.15;transform:scale(.6)}}
+.petal{position:absolute;top:-30px;width:12px;height:16px;background:#e8d3ff;border-radius:80% 0 80% 0;opacity:.8;animation:fall linear infinite}
+@keyframes fall{to{transform:translate(60px,110vh) rotate(540deg)}}
+main{position:relative;z-index:1;min-height:100%;display:flex;align-items:center;justify-content:center;
+ padding:calc(24px + env(safe-area-inset-top,0px)) 20px calc(150px + env(safe-area-inset-bottom,0px))}
+.screen{display:none;width:100%;max-width:460px;text-align:center;animation:in .8s ease both}
+.screen.on{display:block}
+@keyframes in{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+.card{background:rgba(255,255,255,.55);backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,.7);
+ border-radius:28px;padding:34px 26px;box-shadow:0 10px 40px rgba(75,42,130,.25);color:#2a1745}
+h1{font-size:2.5rem;margin-bottom:12px;color:#2a1745}
+h2{font-size:1.9rem;margin-bottom:10px;color:#2a1745}
+p{color:#4a3566;line-height:1.6;margin-bottom:18px}
+.btn{font:600 1rem 'Nunito',sans-serif;border:0;cursor:pointer;color:#fff;padding:14px 28px;border-radius:999px;
+ background:linear-gradient(135deg,#a77be6,#6b3fb5);box-shadow:0 0 22px rgba(155,111,214,.7);transition:transform .2s,box-shadow .2s}
+.btn:hover{transform:scale(1.05);box-shadow:0 0 32px rgba(155,111,214,.95)}
+.btn:focus-visible,.tulip:focus-visible,.env:focus-visible{outline:3px solid #fff;outline-offset:3px}
+.opts{display:grid;gap:10px;margin:8px 0 6px}
+.opt{font:600 .98rem 'Nunito',sans-serif;padding:13px 16px;border-radius:18px;border:1.5px solid #c9a9ee;background:#fff;color:#2a1745;cursor:pointer;transition:.2s}
+.opt:hover{background:#f3e9ff;border-color:#9b6fd6}
+.reply{min-height:3.2em;color:#4b2a82;font-weight:600;margin:12px 0}
+.dots{font-size:.85rem;color:#6b3fb5;margin-bottom:14px}
+/* tulips */
+.garden{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin:6px 0 10px}
+.tulip{background:none;border:0;cursor:pointer;height:150px;position:relative;padding:0}
+.tulip .stem{position:absolute;left:50%;bottom:0;width:5px;height:88px;margin-left:-2.5px;background:linear-gradient(#5aa05a,#2f6b3a);border-radius:3px}
+.tulip .leaf{position:absolute;bottom:10px;left:50%;width:34px;height:14px;background:#4c9a55;border-radius:0 100% 0 100%;transform-origin:left bottom}
+.tulip .leaf.l{transform:translateX(-2px) rotate(-35deg) scaleX(-1);margin-left:-32px}
+.tulip .leaf.r{transform:rotate(-35deg);margin-left:2px}
+.tulip .head{position:absolute;left:50%;bottom:78px;width:54px;height:62px;margin-left:-27px;animation:sway 4s ease-in-out infinite;transform-origin:50% 100%}
+.tulip:nth-child(2n) .head{animation-delay:-1.5s}.tulip:nth-child(3n) .head{animation-delay:-2.6s}
+@keyframes sway{50%{transform:rotate(4deg)}}
+.head i{position:absolute;bottom:0;width:30px;height:58px;background:linear-gradient(#b48be8,#7d4fc4);border-radius:50% 50% 45% 45%/70% 70% 30% 30%;transition:.5s}
+.head i:nth-child(1){left:0;transform:rotate(-14deg);background:linear-gradient(#a57ae0,#6a3cb0)}
+.head i:nth-child(2){right:0;transform:rotate(14deg);background:linear-gradient(#a57ae0,#6a3cb0)}
+.head i:nth-child(3){left:12px;height:62px;z-index:2}
+.tulip.open .head i:nth-child(1){transform:rotate(-34deg)}
+.tulip.open .head i:nth-child(2){transform:rotate(34deg)}
+.tulip.open .head{filter:drop-shadow(0 0 12px #f3e9ff)}
+.msg{min-height:4.5em;font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1.35rem;color:#4b2a82;margin:6px 4px 14px;line-height:1.35}
+/* heart scene */
+.bigheart{position:relative;display:block;margin:14px auto 4px;width:150px;height:150px;border:0;background:none;cursor:pointer}
+.hrt{position:absolute;inset:0;display:grid;place-items:center;font-size:5.5rem;animation:beat 1.3s infinite;filter:drop-shadow(0 0 18px #b28cf0)}
+@keyframes beat{0%,100%{transform:scale(1)}15%{transform:scale(1.18)}30%{transform:scale(1)}45%{transform:scale(1.1)}}
+.ring{position:absolute;inset:18px;border-radius:50%;border:2px solid #fff;opacity:0;animation:ring 2.6s infinite}
+.ring.r2{animation-delay:1.3s}
+@keyframes ring{0%{transform:scale(.7);opacity:.9}100%{transform:scale(2.2);opacity:0}}
+.tap{font-size:.85rem;color:#6b3fb5;margin-bottom:16px}
+.stats{display:flex;justify-content:center;gap:22px;margin:4px 0 14px}
+.stats div{display:flex;flex-direction:column}
+.stats b{font:600 2.3rem 'Cormorant Garamond',serif;color:#4b2a82;line-height:1}
+.stats small{font-size:.8rem;color:#6b3fb5}
+.type{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1.3rem;color:#2a1745;min-height:4.2em}
+.type::after{content:'|';animation:blink 1s steps(1) infinite}
+@keyframes blink{50%{opacity:0}}
+.fly{position:fixed;z-index:5;pointer-events:none;font-size:1.4rem;animation:fly 2.4s ease-out forwards}
+@keyframes fly{to{transform:translate(var(--dx),-85vh) rotate(var(--r)) scale(1.4);opacity:0}}
+.shoot{position:fixed;z-index:0;top:var(--t);left:-10%;width:90px;height:2px;background:linear-gradient(90deg,transparent,#fff);transform:rotate(25deg);animation:shoot 1.3s ease-out forwards;pointer-events:none}
+@keyframes shoot{to{transform:translate(120vw,55vh) rotate(25deg);opacity:0}}
+/* envelope */
+.env{display:block;margin:10px auto 22px;width:240px;height:160px;position:relative;background:none;border:0;cursor:pointer;animation:float 3.5s ease-in-out infinite}
+@keyframes float{50%{transform:translateY(-8px)}}
+.env .back{position:absolute;inset:0;background:#8b5cc8;border-radius:10px;box-shadow:0 12px 30px rgba(75,42,130,.45)}
+.env .paper{position:absolute;left:14px;right:14px;top:14px;height:120px;background:#fff;border-radius:6px;transition:transform .9s ease}
+.env .front{position:absolute;inset:0;border-radius:10px;background:linear-gradient(135deg,#a77be6 50%,transparent 50%),linear-gradient(225deg,#9468d6 50%,transparent 50%);clip-path:polygon(0 100%,0 38%,50% 72%,100% 38%,100% 100%);background:#a373e0}
+.env .flap{position:absolute;left:0;top:0;width:100%;height:84px;background:#7a4cb8;clip-path:polygon(0 0,100% 0,50% 100%);transform-origin:top;transition:transform .7s ease;z-index:3}
+.env .seal{position:absolute;left:50%;top:62px;transform:translateX(-50%);z-index:4;font-size:1.7rem;transition:opacity .4s}
+.env.open{animation:none}
+.env.open .flap{transform:rotateX(180deg);z-index:0}
+.env.open .seal{opacity:0}
+.env.open .paper{transform:translateY(-40px)}
+.letter{text-align:left;max-height:0;overflow:hidden;opacity:0;transition:max-height 1.4s ease,opacity 1s ease}
+.letter.show{max-height:2000px;opacity:1}
+.letter p{font-family:'Cormorant Garamond',serif;font-size:1.28rem;color:#2a1745;margin-bottom:14px}
+.sign{text-align:right;font-style:italic}
+/* garden ground + animals */
+.ground{--sa:env(safe-area-inset-bottom,0px);position:fixed;left:0;right:0;bottom:0;height:calc(130px + var(--sa));z-index:2;pointer-events:none}
+.grass{position:absolute;left:-10%;right:-10%;bottom:0;height:calc(26px + var(--sa));background:linear-gradient(#7dbd78,#4a8a55);border-radius:50% 50% 0 0/100% 100% 0 0;z-index:3}
+.gf{position:absolute;bottom:calc(16px + var(--sa));transform-origin:50% 100%;transform:scaleY(0);animation:grow 1.4s cubic-bezier(.3,1.5,.5,1) forwards;z-index:1}
+@keyframes grow{to{transform:scaleY(1)}}
+.sw{display:flex;flex-direction:column;align-items:center;transform-origin:50% 100%;animation:sway2 3.5s ease-in-out infinite}
+@keyframes sway2{0%,100%{transform:rotate(-4deg)}50%{transform:rotate(4deg)}}
+.gs{width:3px;background:linear-gradient(#5aa05a,#2f6b3a);border-radius:2px}
+.gh{position:relative;width:22px;height:26px;margin-bottom:-4px}
+.gh i{position:absolute;bottom:0;width:13px;height:24px;border-radius:50% 50% 40% 40%/70% 70% 30% 30%;background:var(--c2)}
+.gh i:nth-child(1){left:-2px;transform:rotate(-14deg)}
+.gh i:nth-child(2){right:-2px;transform:rotate(14deg)}
+.gh i:nth-child(3){left:4.5px;height:26px;background:var(--c);z-index:1}
+.dz{width:26px;height:26px;border-radius:50%;margin-bottom:-4px;background:radial-gradient(circle,#ffd54a 0 26%,transparent 27%),repeating-conic-gradient(var(--p) 0 20deg,transparent 20deg 40deg)}
+.walker{position:absolute;bottom:calc(16px + var(--sa));left:0;z-index:2;pointer-events:auto;cursor:pointer}
+.cap{animation:walkR 34s linear infinite}
+.ham{animation:walkL 20s linear infinite;animation-delay:-8s}
+@keyframes walkR{from{transform:translateX(-160px)}to{transform:translateX(calc(100vw + 40px))}}
+@keyframes walkL{from{transform:translateX(calc(100vw + 40px))}to{transform:translateX(-120px)}}
+.bobw{display:block;animation:bob .5s ease-in-out infinite alternate}
+@keyframes bob{to{transform:translateY(-3px)}}
+.flip{transform:scaleX(-1);display:block}
+.leg{transform-box:fill-box;transform-origin:50% 0;animation:step .5s ease-in-out infinite alternate}
+@keyframes step{from{transform:rotate(-22deg)}to{transform:rotate(22deg)}}
+.eye{transform-box:fill-box;transform-origin:center;animation:blink2 4s infinite}
+@keyframes blink2{0%,94%,100%{transform:scaleY(1)}97%{transform:scaleY(.1)}}
+.cheek{transform-box:fill-box;transform-origin:center;animation:puff 1.4s ease-in-out infinite alternate}
+@keyframes puff{to{transform:scale(1.18)}}
+.bub{position:absolute;bottom:100%;left:50%;transform:translateX(-50%) scale(0);background:#fff;color:#4b2a82;padding:4px 10px;border-radius:12px;font:600 .8rem 'Nunito',sans-serif;white-space:nowrap;transition:transform .25s;transform-origin:50% 100%}
+.bub.on{transform:translateX(-50%) scale(1)}
+.bfly{position:fixed;left:-40px;top:var(--y);z-index:1;font-size:1.6rem;pointer-events:none;animation:bfly var(--d) linear infinite;animation-delay:var(--s)}
+.bfly span{display:inline-block;animation:flap .35s ease-in-out infinite alternate}
+@keyframes flap{to{transform:scaleX(.25)}}
+@keyframes bfly{0%{transform:translate(0,0)}25%{transform:translate(28vw,-45px)}50%{transform:translate(55vw,25px)}75%{transform:translate(80vw,-35px)}100%{transform:translate(calc(100vw + 80px),10px)}}
+@media (prefers-reduced-motion:reduce){.bfly{display:none}.walker{animation:none;left:8%}.ham{left:70%}.gf{animation:none;transform:none}.sw,.leg,.bobw{animation:none}}
+/* mini games */
+.mem{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin:8px 0}
+.mc{aspect-ratio:1;border:0;border-radius:14px;font-size:1.8rem;cursor:pointer;color:#fff;background:linear-gradient(135deg,#a77be6,#6b3fb5);box-shadow:0 4px 10px rgba(75,42,130,.3)}
+.mc.up{background:#fff;animation:flipin .35s}
+.mc.ok{background:#e9d8ff;box-shadow:0 0 14px #b28cf0}
+@keyframes flipin{from{transform:rotateY(90deg)}to{transform:none}}
+</style>
+</head>
+<body>
+<div id="stars"></div><div id="petals"></div>
+<main>
+
+<!-- 1 · Entrance -->
+<section class="screen on" id="s1"><div class="card">
+ <div style="font-size:2.6rem;margin-bottom:6px">💜</div>
+ <h1>Someone made a little world for you…</h1>
+ <p>Happy 6 months, love. Take your time. Tap through, there’s something waiting at the end.</p>
+ <button class="btn" data-go="s2">Begin</button>
+</div></section>
+
+<!-- 2 · Quiz -->
+<section class="screen" id="s2"><div class="card">
+ <div class="dots" id="qdots">Question 1 of 3</div>
+ <h2 id="qtext"></h2>
+ <div class="opts" id="qopts"></div>
+ <div class="reply" id="qreply"></div>
+ <button class="btn" id="qnext" style="display:none">Next</button>
+</div></section>
+
+<!-- 3 · Tulips -->
+<section class="screen" id="s3"><div class="card">
+ <h2>A garden, just for you</h2>
+ <p>Tap each tulip.</p>
+ <div class="garden" id="garden"></div>
+ <div class="msg" id="msg">&nbsp;</div>
+ <button class="btn" id="tnext" style="display:none" data-go="g2">Keep going</button>
+</div></section>
+
+<!-- Game 2 · memory match -->
+<section class="screen" id="g2"><div class="card">
+ <h2>Hanapin ang pares</h2>
+ <p>Moves: <b id="mv">0</b></p>
+ <div class="mem" id="mem"></div>
+ <div class="reply" id="g2msg"></div>
+ <button class="btn" id="g2next" style="display:none" data-go="s4">Next</button>
+</div></section>
+
+<!-- 4 · Animated heart -->
+<section class="screen" id="s4"><div class="card" id="hcard">
+ <h2>Six months of us</h2>
+ <button class="bigheart" id="bigheart" aria-label="Tap the heart"><span class="ring"></span><span class="ring r2"></span><span class="hrt">💜</span></button>
+ <div class="tap">Tap the heart</div>
+ <div class="stats">
+  <div><b data-n="6">0</b><small>months</small></div>
+  <div><b data-n="184">0</b><small>days</small></div>
+  <div><b>∞</b><small>kakulitan</small></div>
+ </div>
+ <p class="type" id="type"></p>
+ <button class="btn" data-go="s5">One last thing</button>
+</div></section>
+
+<!-- 5 · Letter -->
+<section class="screen" id="s5"><div class="card">
+ <h2 id="lhead">A little something I’ve been keeping for you…</h2>
+ <button class="env" id="env" aria-label="Open the letter">
+  <div class="back"></div><div class="paper"></div><div class="front"></div><div class="flap"></div><div class="seal">💜</div>
+ </button>
+ <p id="lhint">Tap the envelope</p>
+ <div class="letter" id="letter"></div>
+</div></section>
+
+</main>
+<div class="bfly" style="--y:14%;--d:22s;--s:-4s"><span>🦋</span></div>
+<div class="bfly" style="--y:38%;--d:30s;--s:-18s"><span>🦋</span></div>
+<div class="bfly" style="--y:60%;--d:26s;--s:-10s"><span>🦋</span></div>
+<div class="ground" id="ground" aria-hidden="true">
+ <div class="walker cap" data-k="cap"><span class="bub"></span><span class="bobw">
+  <svg viewBox="0 0 126 72" width="120">
+   <rect class="leg" style="animation-delay:-.25s" x="28" y="54" width="9" height="15" rx="4" fill="#8f5d38"/>
+   <rect class="leg" style="animation-delay:-.25s" x="76" y="54" width="9" height="15" rx="4" fill="#8f5d38"/>
+   <ellipse cx="58" cy="40" rx="44" ry="22" fill="#a9754a"/>
+   <rect class="leg" x="42" y="54" width="9" height="15" rx="4" fill="#8f5d38"/>
+   <rect class="leg" x="90" y="54" width="9" height="15" rx="4" fill="#8f5d38"/>
+   <ellipse cx="96" cy="32" rx="19" ry="16" fill="#b8825a"/>
+   <ellipse cx="111" cy="38" rx="12" ry="10" fill="#c4906a"/>
+   <ellipse cx="119" cy="34" rx="3.2" ry="2.4" fill="#3b2a20"/>
+   <ellipse cx="86" cy="19" rx="4" ry="5" fill="#8f5d38"/>
+   <g class="eye"><circle cx="102" cy="28" r="2.4" fill="#222"/></g>
+   <circle cx="106" cy="40" r="3.2" fill="#f0a0a0" opacity=".6"/>
+   <circle cx="94" cy="14" r="7" fill="#f4a62a"/><ellipse cx="96" cy="8" rx="4" ry="2.2" fill="#5aa05a" transform="rotate(-20 96 8)"/>
+  </svg></span></div>
+ <div class="walker ham" data-k="ham"><span class="bub"></span><span class="bobw">
+  <svg class="flip" viewBox="0 0 70 56" width="64">
+   <circle class="leg" style="animation-delay:-.25s" cx="24" cy="49" r="4.5" fill="#d99a5c"/>
+   <circle class="leg" cx="44" cy="49" r="4.5" fill="#d99a5c"/>
+   <circle cx="11" cy="38" r="3" fill="#d99a5c"/>
+   <ellipse cx="35" cy="34" rx="24" ry="18" fill="#e8b77a"/>
+   <ellipse cx="38" cy="41" rx="13" ry="9" fill="#fff3e0"/>
+   <ellipse cx="52" cy="28" rx="14" ry="13" fill="#eec08a"/>
+   <circle cx="43" cy="17" r="5" fill="#d99a5c"/><circle cx="43" cy="17" r="2.6" fill="#f4b3b3"/>
+   <circle cx="58" cy="16" r="5" fill="#d99a5c"/><circle cx="58" cy="16" r="2.6" fill="#f4b3b3"/>
+   <ellipse class="cheek" cx="57" cy="34" rx="8" ry="6" fill="#fff3e0"/>
+   <g class="eye"><circle cx="55" cy="26" r="2" fill="#222"/></g>
+   <circle cx="64" cy="29" r="1.8" fill="#e88aa0"/>
+  </svg></span></div>
+ <div class="grass"></div>
+</div>
+<script>
+/* ===== EDIT THIS PART ===== */
+const HER_NAME = "love";
+const QUIZ = [
+ {q:"Who’s more makulit?", a:[["Me","Sige na nga, you’re right. Pero ikaw din 😌"],["You","HAHAHA I knew you’d say that. Guilty ako, but you’re worse 💜"],["Both of us, obviously HAHAHA","Correct. Walang panalo, kaya bagay tayo."]]},
+ {q:"Who usually misses the other person first?", a:[["Me","Aww. Miss na rin kita, promise."],["You","Mine. Hindi ko na idedeny 🥺"],["Both, no denying it","Same wavelength, even from far."]]},
+ {q:"If we could spend an entire day together, what would we do?", a:[["Eat together","Okay, food date muna. Ikaw pumili."],["Cuddle and watch something","Blanket, snacks, and you. Perfect."],["Go on an adventure","Let’s go. Basta ikaw kasama ko."],["Anything, as long as we’re together","That’s my answer too 💜"]]}
+];
+const TULIPS = ["I love your kakulitan.","You make ordinary days feel special.","I’m so proud of you.","Thank you for staying and trying with me.","You deserve so much happiness.","I would still choose to make memories with you."];
+const LETTER = [
+ "Hi baby happy happy 6monthdary for us, after so many long HAHHAHHAH NAKAABOT TAYO NG 6MOTNHS OH, I'm so happy for us and grabe proud na proud ako sayo",
+ "andito lang ako palagi naka supporta sayo at sa lahat hon proprotektahan kita sa lahat. tandaan mong meron ako at palagi akong andyan",
+ "sana mabago na natin ang concern natin sa isat isa at sorry sa mga nagagawa ko at ginagawa ko alam kong nasasaktan pa natin ang isat isa pero tiwala lang mahal ko at balang araw makaahon din tayo.",
+ "mahal ko sana balang araw okay tayo kahit ano at pinipili parin natin ang isat isa dahil alam kong may uuwian ka at ako mapagod man tayo sa isat isa tayo padin sana ang mag babalikan",
+ "gusto kong ikaw ang pang habang buhay ko mahal ko at sa araw araw mamahalin kita sa habang buhay",
+ "I LOVE YOU BABY I MISS UR KAKULITAN!!!"
+];
+const SIGN = "yours wife!<br><br>may 24 2026 we are offical";
+/* ===== END EDIT ===== */
+
+const $=s=>document.querySelector(s);
+const show=id=>{document.querySelectorAll('.screen').forEach(s=>s.classList.remove('on'));$('#'+id).classList.add('on');window.scrollTo(0,0);if(id==='s4')startHeart()};
+document.addEventListener('click',e=>{const b=e.target.closest('[data-go]');if(b)show(b.dataset.go)});
+
+/* ambience */
+for(let i=0;i<60;i++){const s=document.createElement('div');s.className='star';
+ s.style.cssText=`left:${Math.random()*100}%;top:${Math.random()*100}%;animation-delay:${Math.random()*3}s`;$('#stars').appendChild(s)}
+if(!matchMedia('(prefers-reduced-motion:reduce)').matches)
+for(let i=0;i<14;i++){const p=document.createElement('div');p.className='petal';
+ p.style.cssText=`left:${Math.random()*100}%;animation-duration:${10+Math.random()*10}s;animation-delay:${-Math.random()*15}s;transform:scale(${.6+Math.random()*.8})`;$('#petals').appendChild(p)}
+
+/* quiz */
+let qi=0;
+function renderQ(){
+ const Q=QUIZ[qi];$('#qdots').textContent=`Question ${qi+1} of ${QUIZ.length}`;$('#qtext').textContent=Q.q;
+ $('#qreply').textContent='';$('#qnext').style.display='none';
+ const box=$('#qopts');box.innerHTML='';
+ Q.a.forEach(([t,r])=>{const b=document.createElement('button');b.className='opt';b.textContent=t;
+  b.onclick=()=>{$('#qreply').textContent=r;$('#qnext').style.display='inline-block';
+   $('#qnext').textContent=qi<QUIZ.length-1?'Next':'On to the garden'};box.appendChild(b)});
+}
+$('#qnext').onclick=()=>{if(qi<QUIZ.length-1){qi++;renderQ()}else show('s3')};
+renderQ();
+
+/* tulips */
+const seen=new Set();
+TULIPS.forEach((t,i)=>{const b=document.createElement('button');b.className='tulip';b.setAttribute('aria-label','Tulip '+(i+1));
+ b.innerHTML='<span class="stem"></span><span class="leaf l"></span><span class="leaf r"></span><span class="head"><i></i><i></i><i></i></span>';
+ b.onclick=()=>{b.classList.add('open');burst(6,b);$('#msg').textContent=t;seen.add(i);
+  if(seen.size===TULIPS.length)$('#tnext').style.display='inline-block'};
+ $('#garden').appendChild(b)});
+
+/* animated heart screen */
+const TYPE_TEXT="Six months na pala. Parang kahapon lang, pero ang dami na nating napagdaanan. Salamat sa bawat araw.";
+let heartStarted=false;
+function burst(n,el){for(let i=0;i<n;i++){const h=document.createElement('div');h.className='fly';
+ h.textContent=['💜','🌷','✨','💕'][Math.floor(Math.random()*4)];
+ const r=(el||$('#bigheart')).getBoundingClientRect();
+ h.style.left=(r.left+r.width/2)+'px';h.style.top=(r.top+r.height/2)+'px';
+ h.style.setProperty('--dx',(Math.random()*240-120)+'px');h.style.setProperty('--r',(Math.random()*80-40)+'deg');
+ h.style.animationDelay=(Math.random()*.4)+'s';document.body.appendChild(h);setTimeout(()=>h.remove(),3000)}}
+function startHeart(){
+ if(heartStarted)return;heartStarted=true;burst(14);
+ document.querySelectorAll('.stats b[data-n]').forEach(el=>{const n=+el.dataset.n,t0=performance.now();
+  (function f(t){const p=Math.min((t-t0)/2200,1);el.textContent=Math.round(n*(1-Math.pow(1-p,3)));if(p<1)requestAnimationFrame(f)})(t0)});
+ let i=0;const el=$('#type');(function k(){el.textContent=TYPE_TEXT.slice(0,i++);if(i<=TYPE_TEXT.length)setTimeout(k,45)})();
+ setInterval(()=>{if(!$('#s4').classList.contains('on'))return;const s=document.createElement('div');s.className='shoot';
+  s.style.setProperty('--t',(Math.random()*40)+'%');document.body.appendChild(s);setTimeout(()=>s.remove(),1500)},2500);
+ setInterval(()=>{if($('#s4').classList.contains('on'))burst(3)},3000);
+}
+$('#bigheart').onclick=()=>burst(10);
+
+/* ground flowers + animals */
+(function(){
+ const cols=[['#b48be8','#7d4fc4'],['#f3a6d8','#d4619f'],['#ffffff','#d9c2f5'],['#a57ae0','#6a3cb0']],pet=['#ffffff','#ffc2e0','#ffe9a8'];
+ const N=28,g=$('#ground');let out='';
+ for(let i=0;i<N;i++){
+  const x=(i+Math.random()*.8)/N*100,h=30+Math.random()*44,d=(Math.random()*2.5).toFixed(2),d2=(-Math.random()*3).toFixed(2);
+  const head=Math.random()<.65?`<div class="gh" style="--c:${cols[i%4][0]};--c2:${cols[i%4][1]}"><i></i><i></i><i></i></div>`:`<div class="dz" style="--p:${pet[i%3]}"></div>`;
+  out+=`<div class="gf" style="left:${x}%;animation-delay:${d}s"><div class="sw" style="animation-delay:${d2}s">${head}<div class="gs" style="height:${h}px"></div></div></div>`;
+ }
+ g.insertAdjacentHTML('afterbegin',out);
+ const SAY={cap:["happy 6 months! 💜","chill lang tayo ✨","i love u both"],ham:["*nom nom* 🌻","kakulitan!!","miss u baby 💜"]};
+ g.querySelectorAll('.walker').forEach(w=>w.onclick=()=>{
+  burst(7,w);const b=w.querySelector('.bub'),a=SAY[w.dataset.k];
+  b.textContent=a[Math.floor(Math.random()*a.length)];b.classList.add('on');
+  clearTimeout(w._t);w._t=setTimeout(()=>b.classList.remove('on'),1800)});
+})();
+
+/* ===== mini games ===== */
+/* 2 · memory match */
+(function(){
+ const icons=['🦫','🐹','🌷','💜','🦋','🌼'];
+ const deck=[...icons,...icons].sort(()=>Math.random()-.5);
+ let first=null,lock=false,moves=0,pairs=0;
+ deck.forEach(ic=>{const b=document.createElement('button');b.className='mc';b.setAttribute('aria-label','card');b.textContent='?';
+  b.onclick=()=>{
+   if(lock||b.classList.contains('up')||b.classList.contains('ok'))return;
+   b.classList.add('up');b.textContent=ic;
+   if(!first){first=b;return}
+   moves++;$('#mv').textContent=moves;const a=first;first=null;
+   if(a.textContent===ic){a.className=b.className='mc ok';pairs++;burst(4,b);
+    if(pairs===icons.length){$('#g2msg').textContent='Lahat nahanap mo. Tayo rin, nahanap ang isa’t isa 💜';$('#g2next').style.display='inline-block'}}
+   else{lock=true;setTimeout(()=>{[a,b].forEach(x=>{x.className='mc';x.textContent='?'});lock=false},800)}
+  };$('#mem').appendChild(b)});
+})();
+
+/* letter */
+$('#letter').innerHTML=LETTER.map(l=>`<p>${l}</p>`).join('')+`<p class="sign">${SIGN}</p>`;
+$('#env').onclick=function(){
+ this.classList.add('open');$('#lhint').style.display='none';$('#lhead').textContent='For you 💌';
+ setTimeout(()=>{this.style.display='none';$('#letter').classList.add('show')},1100);
+};
+</script>
+</body>
+</html>
